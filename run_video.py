@@ -12,7 +12,7 @@ import yaml
 from loguru import logger as guru
 from tqdm import tqdm
 
-from flow3d.data import DavisDataConfig, get_train_val_datasets, iPhoneDataConfig
+from flow3d.data import DavisDataConfig, get_train_val_datasets, iPhoneDataConfig, CustomDataConfig
 from flow3d.renderer import Renderer
 from flow3d.trajectories import (
     get_arc_w2cs,
@@ -109,24 +109,35 @@ class FixedTimeConfig(BaseTimeConfig):
 class VideoConfig:
     work_dir: str
     data: (
+        # Annotated[
+        #     iPhoneDataConfig,
+        #     tyro.conf.subcommand(
+        #         name="iphone",
+        #         default=iPhoneDataConfig(
+        #             data_dir=tyro.MISSING,
+        #             load_from_cache=True,
+        #             skip_load_imgs=True,
+        #         ),
+        #     ),
+        # ]
+        # | Annotated[
+        #     DavisDataConfig,
+        #     tyro.conf.subcommand(
+        #         name="davis",
+        #         default=DavisDataConfig(
+        #             seq_name=tyro.MISSING,
+        #             root_dir=tyro.MISSING,
+        #             load_from_cache=True,
+        #         ),
+        #     ),
+        # ]
         Annotated[
-            iPhoneDataConfig,
+            CustomDataConfig,
             tyro.conf.subcommand(
-                name="iphone",
-                default=iPhoneDataConfig(
-                    data_dir=tyro.MISSING,
-                    load_from_cache=True,
-                    skip_load_imgs=True,
-                ),
-            ),
-        ]
-        | Annotated[
-            DavisDataConfig,
-            tyro.conf.subcommand(
-                name="davis",
-                default=DavisDataConfig(
-                    seq_name=tyro.MISSING,
-                    root_dir=tyro.MISSING,
+                name="custom",
+                default=CustomDataConfig(
+                    # seq_name="bear_input",
+                    data_dir="preproc/data_root",
                     load_from_cache=True,
                 ),
             ),

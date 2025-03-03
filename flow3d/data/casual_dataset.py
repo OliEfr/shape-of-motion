@@ -69,7 +69,7 @@ class CustomDataConfig:
         "depth_anything_v2",
         "unidepth_disp",
     ] = "aligned_depth_anything"
-    camera_type: Literal["droid_recon", "megasam"] = "megasam"
+    camera_type: Literal["droid_recon", "megasam"] = "droid_recon"
     track_2d_type: Literal["bootstapir", "tapir"] = "bootstapir"
     mask_erosion_radius: int = 7
     scene_norm_dict: tyro.conf.Suppress[SceneNormDict | None] = None
@@ -112,12 +112,12 @@ class CasualDataset(BaseDataset):
         self.mask_erosion_radius = mask_erosion_radius
         self.camera_type = camera_type
 
-        self.img_dir = f"{data_dir}/{image_type}/{res}"
+        self.img_dir = f"{data_dir}/{image_type}/{res}/bear_input"
         self.img_ext = os.path.splitext(os.listdir(self.img_dir)[0])[1]
-        self.depth_dir = f"{data_dir}/{depth_type}/{res}"
-        self.mask_dir = f"{data_dir}/{mask_type}/{res}"
-        self.tracks_dir = f"{data_dir}/{track_2d_type}/{res}"
-        self.cache_dir = f"{data_dir}/flow3d_preprocessed/{res}"
+        self.depth_dir = f"{data_dir}/{depth_type}/{res}/bear_input"
+        self.mask_dir = f"{data_dir}/{mask_type}/{res}/bear_input"
+        self.tracks_dir = f"{data_dir}/{track_2d_type}/{res}/bear_input"
+        self.cache_dir = f"{data_dir}/flow3d_preprocessed/{res}/bear_input"
         frame_names = [os.path.splitext(p)[0] for p in sorted(os.listdir(self.img_dir))]
 
         if end == -1:
@@ -137,7 +137,7 @@ class CasualDataset(BaseDataset):
             img = self.get_image(0)
             H, W = img.shape[:2]
             w2cs, Ks, tstamps = load_cameras(
-                f"{data_dir}/{camera_type}.npy", H, W
+                f"{data_dir}/{camera_type}/bear_input.npy", H, W
             )
             
         elif camera_type == "megasam":
