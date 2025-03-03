@@ -62,10 +62,10 @@ class TrainConfig:
     lr: SceneLRConfig
     loss: LossesConfig
     optim: OptimizerConfig
-    num_fg: int = 40_000
-    num_bg: int = 100_000
-    num_motion_bases: int = 10
-    num_epochs: int = 500
+    num_fg: int = 2* 40_000
+    num_bg: int = 2*100_000
+    num_motion_bases: int = 20 * 10
+    num_epochs: int = 4 * 500
     port: int | None = None
     vis_debug: bool = False 
     batch_size: int = 8
@@ -75,6 +75,8 @@ class TrainConfig:
 
 
 def main(cfg: TrainConfig):
+    cfg.work_dir = os.path.join(cfg.work_dir, cfg.data.seq_name)
+    print("Saving to: ", cfg.work_dir)
     backup_code(cfg.work_dir)
     train_dataset, train_video_view, val_img_dataset, val_kpt_dataset = (
         get_train_val_datasets(cfg.data, load_val=True)

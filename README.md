@@ -26,6 +26,8 @@ pip install -r requirements.txt
 pip install git+https://github.com/nerfstudio-project/gsplat.git
 ```
 
+Additionally, install nvdiffrast from https://github.com/NVlabs/nvdiffrast.git according to https://github.com/vye16/shape-of-motion/issues/22
+
 ## Usage
 
 ### Preprocessing
@@ -41,6 +43,12 @@ python run_training.py \
   data:davis \
   --data.seq-name horsejump-low
 ```
+
+
+### View rendering
+https://github.com/vye16/shape-of-motion/issues/22
+
+
 
 ## Evaluation on iPhone Dataset
 First, download our processed iPhone dataset from [this](https://drive.google.com/drive/folders/1xJaFS_3027crk7u36cue7BseAX80abRe?usp=sharing) link. To train on a sequence, e.g., *paper-windmill*, run:

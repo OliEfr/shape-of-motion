@@ -33,3 +33,4 @@ cucim-cu12==24.6.*
 pylibraft-cu12==24.6.*
 raft-dask-cu12==24.6.*
 cuvs-cu12==24.6.*
+nvdiffrast@git+https://github.com/NVlabs/nvdiffrast.git
