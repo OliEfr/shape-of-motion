@@ -68,7 +68,7 @@ class TrainConfig:
     optim: OptimizerConfig
     num_fg: int = 40_000
     num_bg: int = 100_000
-    num_motion_bases: int = 10
+    num_motion_bases: int = 20
     num_epochs: int =  500
     port: int | None = None
     vis_debug: bool = False 
@@ -80,8 +80,6 @@ class TrainConfig:
 
 
 def main(cfg: TrainConfig):
-    cfg.work_dir = os.path.join(cfg.work_dir, cfg.data.seq_name)
-    print("Saving to: ", cfg.work_dir)
     backup_code(cfg.work_dir)
     train_dataset, train_video_view, val_img_dataset, val_kpt_dataset = (
         get_train_val_datasets(cfg.data, load_val=True)
