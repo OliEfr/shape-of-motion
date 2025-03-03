@@ -26,7 +26,7 @@ pip install -r requirements.txt
 pip install git+https://github.com/nerfstudio-project/gsplat.git
 ```
 
-Additionally, install nvdiffrast from https://github.com/NVlabs/nvdiffrast.git according to https://github.com/vye16/shape-of-motion/issues/22
+Additionally, install nvdiffrast from https://github.com/NVlabs/nvdiffrast.git according to https://github.com/vye16/shape-of-motion/issues/22 (should be taken care of in requirements.txt)
 
 ## Usage
 
