@@ -11,3 +11,6 @@ datasets/
 
 preproc/checkpoints
 preproc/checkpoints/
+
+/output
+preproc/data_root
