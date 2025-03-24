@@ -1,0 +1,1 @@
+ffmpeg -f image2 -framerate 35 -i frame%06d.jpg out.gif

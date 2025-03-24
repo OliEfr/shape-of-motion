@@ -12,5 +12,6 @@ results/
 
 preproc/checkpoints
 preproc/checkpoints/
-preproc/
-output/
+
+/output
+preproc/data_root

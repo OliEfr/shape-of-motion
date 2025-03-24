@@ -16,6 +16,9 @@ We provide a setup script in `setup_dependencies.sh` for updating the environmen
 
 ## Processing Custom Data
 
+You can crop all images in a folder using  `mogrify -crop 363x484+0+0 *.jpg               
+` after installing this tool: https://wiki.ubuntuusers.de/ImageMagick/. You can check size of all images in a folder using `xargs  identify -format "%wx%h\n" < <(ls -tr1)`. Also use this to get unique sizes of images in folder: `ls -tr1 | xargs -I {} identify -format "%wx%h\n" {} | sort | uniq -c` .
+
 We highly encourage users to structure their data directories in the following way:
 ```
 - data_root
@@ -35,6 +38,8 @@ python mask_app.py --root_dir [data_root]
 ```
 This GUI can be used for extracting frames from a video, and extracting video object masks using Segment-Anything and XMEM. Follow the instructions in the GUI to save these.
 ![gradio interface](gradio_interface.png)
+
+Then, use "preproc/post_process_depth.py" to convert the extracted masks to a binary mask.
 
 To finish preprocessing, run
 ```
